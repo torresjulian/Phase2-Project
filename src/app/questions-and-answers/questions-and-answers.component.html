@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Quiz</title>
+    
+</head>
+<body>
+    <form [formGroup]="userOpts" (ngSubmit)="checkSelected()">
+        <div class="form-group" *ngFor="let q of data;let i = index">
+            <li class="jumbotron"><h3>Question {{i + 1}}</h3>
+                <p>{{q.Question}}</p><br>
+                <div>
+                    <li class>
+                        <input type="radio" formControlName="{{i}}" value="A">
+                        <label for="A">A. {{q.Options.A}}</label>
+                    </li>
+                    <li class>
+                        <input type="radio" formControlName="{{i}}" value="B">
+                        <label for="B">B. {{q.Options.B}}</label>
+                    </li>
+                    <li>
+                        <input type="radio" formControlName="{{i}}" value="C">
+                        <label for="C">C. {{q.Options.C}}</label>
+                    </li>
+                    <li>
+                        <input type="radio" formControlName="{{i}}" value="D">
+                        <label for="D">D. {{q.Options.D}}</label>
+                    </li>
+                </div>
+                <br><br>
+                <div *ngIf="flag">
+                    Correct Answer: {{q.Answer}} 
+                 </div>
+            </li>
+        </div>
+        <input class="btn btn-primary pull-left" type="submit" value="Submit">
+    </form>
+    <br>
+    <button class="btn btn-secondary" (click)="reloadData()">Reset</button>
+</body>
+</html>
